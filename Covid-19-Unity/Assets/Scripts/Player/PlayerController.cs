@@ -77,11 +77,6 @@ public class PlayerController : MonoBehaviour
             // apply player vector to rigid-body
             Vector3 movementVector = new Vector3(playerVector.x, playerVector.y, 0);
             movementVector = movementVector.normalized * playerSpeed * Time.deltaTime;
-            // reduce speed when moving diagonal
-            if (playerVector.x != 0 && playerVector.y != 0)
-            {
-                movementVector /= Mathf.Sqrt(2);
-            }
             // flip player sprite if needed
             if (playerVector.x > 0 && isRight)
             {
