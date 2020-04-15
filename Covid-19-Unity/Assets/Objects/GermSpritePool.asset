@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a00e83e5be8a5478c4998a1a1c89df, type: 3}
+  m_Name: GermSpritePool
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -787707069134829470, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}
+  - {fileID: -8190671534790748708, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}
+  - {fileID: -6978858574083677862, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}
+  - {fileID: -3347764968488333052, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}
+  - {fileID: -1349731726284092198, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}
+  - {fileID: 1659502173007137335, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}
+  - {fileID: -1557108966797483770, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}
+  - {fileID: 173890048693871787, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}
+  - {fileID: 7496031206328657624, guid: 581fb8011b781174283adcb25b8f3e9b, type: 3}

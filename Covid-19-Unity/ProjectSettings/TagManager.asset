@@ -38,12 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Ground
     uniqueID: 4172443157
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Player
     uniqueID: 3426130191
+    locked: 0
+  - name: Germs
+    uniqueID: 1262962341
     locked: 0

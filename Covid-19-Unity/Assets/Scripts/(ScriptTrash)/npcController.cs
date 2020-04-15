@@ -5,12 +5,13 @@ using UnityEngine;
 public class npcController : MonoBehaviour
 {
     // Position and Movement:
-    public float speed;
+    public float healthySpeed;
+    public float infectedSpeed;
+    private float currSpeed;
     private Vector2Int position;
     private Vector2Int target;
     private Vector2Int npcVector;
     private Vector3 movementVector;
-
 
     // Components:
     private Animator animator;
@@ -21,11 +22,19 @@ public class npcController : MonoBehaviour
     [HideInInspector] public bool isMoving = false;
     private bool isRight = false;
 
+    // Colors:
+    public Color healthyColor;
+    public Color infectedColor;
+    public Color deadColor;
+
     // Start is called before the first frame update
     void Start()
     {
         npcRigidbody = GetComponent<Rigidbody2D>();
+
         npcSprite = GetComponent<SpriteRenderer>();
+        npcSprite.color = healthyColor;
+
         animator = GetComponent<Animator>();
         animator.SetFloat("x-move", 0f);
         animator.SetFloat("y-move", 0f);
@@ -36,6 +45,8 @@ public class npcController : MonoBehaviour
         transform.SetPositionAndRotation(new Vector3(position.x, position.y, 0f), Quaternion.identity);
 
         npcVector = new Vector2Int(0, 0);
+
+        currSpeed = healthySpeed;
     }
 
     void Update()
@@ -48,7 +59,7 @@ public class npcController : MonoBehaviour
         if (isMoving)
         {
             movementVector = new Vector3(npcVector.x, npcVector.y, 0f);
-            movementVector = movementVector.normalized * speed * Time.deltaTime;
+            movementVector = movementVector.normalized * currSpeed * Time.deltaTime;
             npcRigidbody.MovePosition(npcRigidbody.transform.position + movementVector);
 
             // get current position of npc
@@ -142,5 +153,11 @@ public class npcController : MonoBehaviour
     {
         isRight = !isRight;
         npcSprite.flipX = isRight;
-    } 
+    }
+
+    public void BecomeInfected()
+    {
+        npcSprite.color = infectedColor;
+        currSpeed = infectedSpeed;
+    }
 }

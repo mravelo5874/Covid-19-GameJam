@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     private bool isRight = false; // keep track of what direction player is facing
 
     // Movement:
-    public float playerSpeed = 5.0f; // player movement speed
+    public float playerSpeed = 10.0f; // player movement speed
     private Rigidbody2D playerRigidBody; // player rigid-body component
     private Vector2 playerVector; // keep track of the player's movement vector
+    private Vector2 directionVector; // what direction is the player facing
+    private Vector3 movementVector; // player's movement vector
     private Animator playerAnim; // animator to change player animations
     private SpriteRenderer playerSprite; // used to flip sprite
 
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
         playerVector = new Vector2(0, 0);
+        directionVector = new Vector2(0, 0);
     }   
 
     // Update is called once per frame
@@ -63,6 +66,8 @@ public class PlayerController : MonoBehaviour
             }
             else 
             {
+                // stop player movement
+                playerRigidBody.velocity = Vector2.zero;
                 playerAnim.SetFloat("x-move", 0f);
                 playerAnim.SetFloat("y-move", 0f);
             }
@@ -75,8 +80,8 @@ public class PlayerController : MonoBehaviour
         if (isMove)
         {
             // apply player vector to rigid-body
-            Vector3 movementVector = new Vector3(playerVector.x, playerVector.y, 0);
-            movementVector = movementVector.normalized * playerSpeed * Time.deltaTime;
+            movementVector = new Vector3(playerVector.x, playerVector.y, 0);
+            movementVector = movementVector.normalized * playerSpeed * Time.fixedDeltaTime;
             // flip player sprite if needed
             if (playerVector.x > 0 && isRight)
             {
@@ -87,12 +92,15 @@ public class PlayerController : MonoBehaviour
                 FlipPlayerSprite();
             }
 
-            playerRigidBody.MovePosition(playerRigidBody.transform.position + movementVector);
+            playerRigidBody.velocity = movementVector;
             // change animator values to change animation
             playerAnim.SetFloat("x-move", (float)playerVector.x);
             playerAnim.SetFloat("y-move", (float)playerVector.y);
             playerAnim.SetFloat("x-prev", (float)playerVector.x);
             playerAnim.SetFloat("y-prev", (float)playerVector.y);
+
+            // update player direction
+            directionVector = playerVector;
         }
     }
 
@@ -100,5 +108,15 @@ public class PlayerController : MonoBehaviour
     {
         isRight = !isRight;
         playerSprite.flipX = isRight;
-    }   
+    } 
+
+    public Vector2 GetPlayerDirection()
+    {
+        return directionVector;
+    }
+
+    public Vector2 getPlayerVelocity()
+    {
+        return playerRigidBody.velocity;
+    }
 }
