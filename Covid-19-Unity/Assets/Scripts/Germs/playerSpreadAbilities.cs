@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Abilities : MonoBehaviour
+public class playerSpreadAbilities : MonoBehaviour
 {
     public GameObject germPrefab;
-    public Transform germParent;
+    private Transform germParent;
     public SpritePool germSpritePool;
 
     // Bools:
@@ -27,16 +27,18 @@ public class Abilities : MonoBehaviour
     // Refrences to other scripts:
     private PlayerController player;
 
-    void Start() {
-        player = GetComponent<PlayerController>();
+    void Start() 
+    {
+        player = GetComponent<PlayerController>();     
+        germParent = GameObject.Find("GermPool").GetComponent<Transform>();
     }
 
     void Update() {
         
         if (!inAction)
         {
-            // Cough mechanic
-            if (Input.GetMouseButtonDown(0))
+            // Cough mechanic (left-click or XBox 'A' button)
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 0"))
             {
                 if (canCough)
                 {
@@ -46,8 +48,8 @@ public class Abilities : MonoBehaviour
                 }
             }
 
-            // Sneeze mechanic
-            if (Input.GetMouseButtonDown(1))
+            // Sneeze mechanic (right-click or XBox 'B' button)
+            if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("joystick button 1"))
             {
                 if (canSneeze)
                 {
@@ -59,7 +61,7 @@ public class Abilities : MonoBehaviour
         }
     }
 
-    private void CoughAbility()
+    public void CoughAbility()
     {
         print ("cough-cough!");
         for (int i = 0; i < coughProjectileCount; i++)
@@ -68,7 +70,7 @@ public class Abilities : MonoBehaviour
             Vector3 initPos = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 0f);
             GameObject germ = Instantiate(germPrefab, initPos, Quaternion.identity, germParent);
             germ.GetComponent<SpriteRenderer>().sprite = GetRandomGermSprite();
-            // add player's velocity
+            // add users's velocity
             germ.GetComponent<Rigidbody2D>().velocity += player.getPlayerVelocity();
             // apply force and torque
             germ.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * coughGermSpeed);
@@ -85,10 +87,10 @@ public class Abilities : MonoBehaviour
         canCough = true;
     }
 
-    private void SneezeAbility()
+    public void SneezeAbility()
     {
         print("achooo!");
-        Vector2 playerDirection = player.GetPlayerDirection();
+        Vector2 userDirection = userDirection = player.GetPlayerDirection();
 
         for (int i = 0; i < sneezeProjectileCount; i++)
         {
@@ -96,20 +98,17 @@ public class Abilities : MonoBehaviour
             Vector3 initPos = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 0f);
             GameObject germ = Instantiate(germPrefab, initPos, transform.rotation, germParent);
             germ.GetComponent<SpriteRenderer>().sprite = GetRandomGermSprite();
-            // add player's velocity
+            // add users's velocity
             germ.GetComponent<Rigidbody2D>().velocity += player.getPlayerVelocity();
             // randomize distance
-            Vector2 randomDistance = playerDirection * Random.Range(0.75f, 2f);
+            Vector2 randomDistance = userDirection * Random.Range(0.75f, 2f);
             // randomize spread
             randomDistance.x = randomDistance.x + Random.Range(-sneezeSpread, sneezeSpread);
             randomDistance.y = randomDistance.y + Random.Range(-sneezeSpread, sneezeSpread);
             // apply force and torque
             germ.GetComponent<Rigidbody2D>().AddForce(randomDistance * sneezeGermSpeed);
             germ.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-1f, 1f) * sneezeGermSpeed);
-            
-
-            
-            
+  
         }
 
         inAction = false;

@@ -11,6 +11,7 @@ public class npcController : MonoBehaviour
     private Vector2Int position;
     private Vector2Int target;
     private Vector2Int npcVector;
+    private Vector2 directionVector; // what direction is the npc facing
     private Vector3 movementVector;
 
     // Components:
@@ -45,6 +46,7 @@ public class npcController : MonoBehaviour
         transform.SetPositionAndRotation(new Vector3(position.x, position.y, 0f), Quaternion.identity);
 
         npcVector = new Vector2Int(0, 0);
+        directionVector = new Vector2(0, -1);
 
         currSpeed = healthySpeed;
     }
@@ -146,6 +148,9 @@ public class npcController : MonoBehaviour
             {
                 FlipSprite();
             }
+
+            // update npc direction
+            directionVector = npcVector;
         }
     }
 
@@ -159,5 +164,15 @@ public class npcController : MonoBehaviour
     {
         npcSprite.color = infectedColor;
         currSpeed = infectedSpeed;
+    }
+
+    public Vector2 getNPCVelocity()
+    {
+        return npcRigidbody.velocity;
+    }
+
+    public Vector2 GetNPCDirection()
+    {
+        return directionVector;
     }
 }

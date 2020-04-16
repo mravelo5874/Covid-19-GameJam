@@ -8,7 +8,6 @@ public class ContagiousObject : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print ("enter!");
         if (other.GetComponent<SusceptibleObject>() != null)
         {
             float num = Random.value;

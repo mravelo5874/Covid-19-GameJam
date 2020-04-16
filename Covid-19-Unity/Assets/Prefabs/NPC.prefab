@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5410336939713617594}
   - component: {fileID: 9029829276989770985}
   - component: {fileID: 2997444430418252458}
+  - component: {fileID: 209530622156434803}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -183,3 +184,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
+  chanceToSpred: 0.5
+--- !u!114 &209530622156434803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9029829276989770991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261320d292a242f4e88023b5152a90ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  germPrefab: {fileID: 8044954546509658248, guid: e7ca8cadafe66654ea86cb8053888796,
+    type: 3}
+  germSpritePool: {fileID: 11400000, guid: ae342e39c5b258c41815376cbbb35276, type: 2}
+  coughProjectileCount: 10
+  coughCoolDown: 3
+  coughGermSpeed: 50
+  sneezeProjectileCount: 10
+  sneezeCoolDown: 3
+  sneezeGermSpeed: 100
+  sneezeSpread: 0.3
