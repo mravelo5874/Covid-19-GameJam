@@ -13,7 +13,7 @@ public class PathNode
     public int hCost;
     public int fCost;
 
-    public bool isWalkable = true;
+    public bool isWalkable;
     public PathNode cameFromNode;
     
     public PathNode(myGrid<PathNode> grid, int x, int y)
@@ -21,6 +21,8 @@ public class PathNode
         this.grid = grid;
         this.x = x;
         this.y = y;
+        this.isWalkable = true;
+        //this.isWalkable = GameData.instance.walkableTiles[x, y];
     }
 
     public void CalculateFCost()
@@ -36,6 +38,12 @@ public class PathNode
     public void ToggleIsWalkable()
     {
         isWalkable = !isWalkable;
+        grid.TriggerGridObjectChanged(x, y);
+    }
+
+    public void SetIsWalkable(bool isWalkable)
+    {
+        this.isWalkable = isWalkable;
         grid.TriggerGridObjectChanged(x, y);
     }
 }

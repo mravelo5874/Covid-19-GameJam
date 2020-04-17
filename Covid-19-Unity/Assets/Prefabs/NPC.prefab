@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9029829276989770985}
   - component: {fileID: 2997444430418252458}
   - component: {fileID: 209530622156434803}
+  - component: {fileID: 6946180581340715726}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -165,8 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f871e8774531a3f428f931aaec9fada9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthySpeed: 3
-  infectedSpeed: 2
   isMoving: 0
   healthyColor: {r: 0.627451, g: 1, b: 1, a: 1}
   infectedColor: {r: 0.5552237, g: 1, b: 0, a: 1}
@@ -184,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  chanceToSpred: 0.5
+  chanceToSpread: 0.5
 --- !u!114 &209530622156434803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,10 +199,16 @@ MonoBehaviour:
   germPrefab: {fileID: 8044954546509658248, guid: e7ca8cadafe66654ea86cb8053888796,
     type: 3}
   germSpritePool: {fileID: 11400000, guid: ae342e39c5b258c41815376cbbb35276, type: 2}
-  coughProjectileCount: 10
-  coughCoolDown: 3
-  coughGermSpeed: 50
-  sneezeProjectileCount: 10
-  sneezeCoolDown: 3
-  sneezeGermSpeed: 100
-  sneezeSpread: 0.3
+--- !u!114 &6946180581340715726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9029829276989770991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8721894182e6b44906f806203edf6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveProb: 0.5

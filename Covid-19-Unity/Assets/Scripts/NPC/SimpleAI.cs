@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SimpleAI : MonoBehaviour
 {
-    public Vector2Int movementRange; // min and max distances that npc can move
     [Range(0,1)] public float moveProb; // probability of moving if idle
 
     private npcController npc;
@@ -35,10 +34,16 @@ public class SimpleAI : MonoBehaviour
 
             if (probability <= moveProb)
             {
-                int units = Random.Range(movementRange.x, movementRange.y);
-                int direction = Random.Range(0, 7);
-
-                npc.SimpleWalk((Direction)direction, units);
+                bool walkable = false;
+                Vector2Int randPos = new Vector2Int();
+                while (!walkable)
+                {
+                    // choose a random x, y from the grid
+                    randPos = new Vector2Int(Random.Range(0, GameData.instance.gridWidth), Random.Range(0, GameData.instance.gridHeight));
+                    walkable = GameManager.instance.isWalkablePos(randPos);
+                }
+                
+                npc.SetTargetPosition(GameManager.instance.GetWorldPos(randPos));
             }
         }
     }

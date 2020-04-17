@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class GermDespawn : MonoBehaviour
 {
-    [Range(0, 1)] public float despawnProbability = 0.25f; // chance that germ is despawned every second;
+    [Range(0, 1)] private float despawnProbability; // chance that germ is despawned every second;
     private bool isDespawning = false;
     public float timeToDespawn = 3f;
     private float timer = 0f;
+
+    void Awake()
+    {
+        // Load data from GameData
+        despawnProbability = GameData.instance.germdespawnProbability;
+    }
 
     void Start()
     {

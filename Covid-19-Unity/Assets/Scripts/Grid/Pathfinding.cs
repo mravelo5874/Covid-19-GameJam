@@ -5,6 +5,8 @@ using UnityEngine;
 // used Code-Monkey tutorial: https://www.youtube.com/watch?v=alU04hvz6L4&t=297s
 public class Pathfinding
 {
+    public static Pathfinding instance { get; private set; }
+
     private const int MOVE_STRAIGHT_COST = 10;
     private const int MOVE_DIAGONAL_COST = 14;
 
@@ -14,6 +16,7 @@ public class Pathfinding
 
     public Pathfinding(int width, int height)
     {
+        instance = this;
         grid = new myGrid<PathNode>(width, height, 1f, Vector3.zero, (myGrid<PathNode> g, int x, int y) => new PathNode(g, x, y));
     }
 
@@ -21,6 +24,25 @@ public class Pathfinding
     {
         return grid;
     }
+
+    public List<Vector3> FindPath(Vector3 startPos, Vector3 endPos)
+    {
+        List<PathNode> path = FindPath(grid.GetXY(startPos), grid.GetXY(endPos));
+        
+        if (path == null)
+        {
+            return null;
+        }
+        else
+        {
+            List<Vector3> vectorPath = new List<Vector3>();
+            foreach (PathNode node in path)
+            {
+                vectorPath.Add(new Vector3(node.x, node.y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * 0.5f);
+            }
+            return vectorPath;
+        }
+    }   
 
     // finds a path between two positions in the graph
     public List<PathNode> FindPath(Vector2Int startPos, Vector2Int endPos)

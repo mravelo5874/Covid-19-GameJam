@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private bool isRight = false; // keep track of what direction player is facing
 
     // Movement:
-    public float playerSpeed = 10.0f; // player movement speed
+    private float playerSpeed; // player movement speed
     private Rigidbody2D playerRigidBody; // player rigid-body component
     private Vector2 playerVector; // keep track of the player's movement vector
     private Vector2 directionVector; // what direction is the player facing
@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // load data from GameData:
+        playerSpeed = GameData.instance.playerSpeed;
+
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerAnim = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();

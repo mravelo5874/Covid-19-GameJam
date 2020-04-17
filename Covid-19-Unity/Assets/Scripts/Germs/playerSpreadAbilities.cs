@@ -14,21 +14,31 @@ public class playerSpreadAbilities : MonoBehaviour
     private bool canSneeze = true;
 
     // Cough Mechanic:
-    public int coughProjectileCount = 10;
-    public float coughCoolDown = 3f;
-    public float coughGermSpeed = 50f;
+    private int coughProjectileCount;
+    private float coughCoolDown;
+    private float coughGermSpeed;
     
     // Sneeze Mechanic:
-    public int sneezeProjectileCount = 10;
-    public float sneezeCoolDown = 3f;
-    public float sneezeGermSpeed = 100f;
-    public float sneezeSpread = 0.3f;
+    private int sneezeProjectileCount;
+    private float sneezeCoolDown;
+    private float sneezeGermSpeed;
+    private float sneezeSpread;
 
     // Refrences to other scripts:
     private PlayerController player;
 
     void Start() 
     {
+        // load data from GameData
+        coughProjectileCount = GameData.instance.coughProjectileCount;
+        coughCoolDown = GameData.instance.coughCooldown;
+        coughGermSpeed = GameData.instance.coughGermSpeed;
+
+        sneezeProjectileCount = GameData.instance.sneezeProjectileCount;
+        sneezeCoolDown = GameData.instance.sneezeCooldown;
+        sneezeGermSpeed = GameData.instance.sneezeGermSpeed;
+        sneezeSpread = GameData.instance.sneezeSpread;
+
         player = GetComponent<PlayerController>();     
         germParent = GameObject.Find("GermPool").GetComponent<Transform>();
     }

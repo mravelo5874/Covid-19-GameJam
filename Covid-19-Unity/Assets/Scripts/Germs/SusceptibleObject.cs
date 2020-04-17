@@ -5,11 +5,14 @@ using UnityEngine;
 public class SusceptibleObject : MonoBehaviour
 {
     public Status status;
-    public float chanceToSpred = 0.5f;
+    public float chanceToSpread;
     private npcSpreadAbilities spreadAbilities;
 
     void Start() 
     {
+        // load data from GameData:
+        chanceToSpread = GameData.instance.npcSpreadChance;
+
         spreadAbilities = GetComponent<npcSpreadAbilities>();
         float rand = Random.Range(8f, 12f);
         InvokeRepeating("AttemptToSpread", 1f, rand);  //1s delay, repeat every x seconds
@@ -35,7 +38,7 @@ public class SusceptibleObject : MonoBehaviour
         if (status == Status.infected)
         {
             float num = Random.value;
-            if (num <= chanceToSpred)
+            if (num <= chanceToSpread)
             {
                 int type = Random.Range(0, 2);
                 if (type == 0)

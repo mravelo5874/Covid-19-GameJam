@@ -34,7 +34,10 @@ public class myGrid <Type>
                 gridArray[x, y] = createGridObj(this, x, y);
             }
         }
+    }
 
+    public void DrawGrid()
+    {
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -46,6 +49,11 @@ public class myGrid <Type>
 
         Debug.DrawLine(GetWorldPos(0, height), GetWorldPos(width, height), Color.blue, 1000f);
         Debug.DrawLine(GetWorldPos(width, 0), GetWorldPos(width, height), Color.blue, 1000f);
+    }
+
+    public Type[,] GetGridData()
+    {
+        return gridArray;
     }
 
     public int GetWidth() { return width; }

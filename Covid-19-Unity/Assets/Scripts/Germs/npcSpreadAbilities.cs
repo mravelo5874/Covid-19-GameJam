@@ -8,27 +8,32 @@ public class npcSpreadAbilities : MonoBehaviour
     private Transform germParent;
     public SpritePool germSpritePool;
 
-    // Bools:
-    private bool inAction = false;
-    private bool canCough = true;
-    private bool canSneeze = true;
-
     // Cough Mechanic:
-    public int coughProjectileCount = 10;
-    public float coughCoolDown = 3f;
-    public float coughGermSpeed = 50f;
+    private int coughProjectileCount;
+    private float coughCoolDown;
+    private float coughGermSpeed;
     
     // Sneeze Mechanic:
-    public int sneezeProjectileCount = 10;
-    public float sneezeCoolDown = 3f;
-    public float sneezeGermSpeed = 100f;
-    public float sneezeSpread = 0.3f;
+    private int sneezeProjectileCount;
+    private float sneezeCoolDown;
+    private float sneezeGermSpeed;
+    private float sneezeSpread;
 
     // Refrences to other scripts:
     private npcController npc;
 
     void Start() 
     {
+        // load data from GameData
+        coughProjectileCount = GameData.instance.coughProjectileCount;
+        coughCoolDown = GameData.instance.coughCooldown;
+        coughGermSpeed = GameData.instance.coughGermSpeed;
+
+        sneezeProjectileCount = GameData.instance.sneezeProjectileCount;
+        sneezeCoolDown = GameData.instance.sneezeCooldown;
+        sneezeGermSpeed = GameData.instance.sneezeGermSpeed;
+        sneezeSpread = GameData.instance.sneezeSpread;
+
         npc = GetComponent<npcController>();
         germParent = GameObject.Find("GermPool").GetComponent<Transform>();
     }
@@ -48,16 +53,8 @@ public class npcSpreadAbilities : MonoBehaviour
             germ.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * coughGermSpeed);
             germ.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-1f, 1f) * coughGermSpeed);
         }
-
-        inAction = false;
-        StartCoroutine(CoughCoolDown());
     }
 
-    private IEnumerator CoughCoolDown()
-    {
-        yield return new WaitForSeconds(coughCoolDown);
-        canCough = true;
-    }
 
     public void SneezeAbility()
     {
@@ -82,15 +79,6 @@ public class npcSpreadAbilities : MonoBehaviour
             germ.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-1f, 1f) * sneezeGermSpeed);
   
         }
-
-        inAction = false;
-        StartCoroutine(SneezeCoolDown());
-    }
-
-    private IEnumerator SneezeCoolDown()
-    {
-        yield return new WaitForSeconds(sneezeCoolDown);
-        canSneeze = true;
     }
 
     private Sprite GetRandomGermSprite()
