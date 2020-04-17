@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a00e83e5be8a5478c4998a1a1c89df, type: 3}
+  m_Name: FluidCapsuleSpritePool
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 421963019923335204, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -4353040288372457621, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -6638060509606118233, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 1581974634020367487, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 3169490824705614108, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 8762937615633520900, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 495260528516789608, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 8511720186995692018, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 6807707615118427908, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 5431685579927947460, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -5960297860501571001, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -1386970837677956706, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -5316190492998812518, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -6537636089972580656, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 6503587653240355078, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -5352593034468261096, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 6717364619170438666, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -8587477185682351212, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 2742573274606612555, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 6529643053077903219, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 1633862763254497858, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -7561815943295407718, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 2823346679810695919, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: 7307839068923229756, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}
+  - {fileID: -8740077238645969317, guid: 17c393616c370474c84a4f7cfcdbad03, type: 3}

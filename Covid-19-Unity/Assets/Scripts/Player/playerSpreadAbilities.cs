@@ -10,8 +10,6 @@ public class playerSpreadAbilities : MonoBehaviour
 
     // Bools:
     private bool inAction = false;
-    private bool canCough = true;
-    private bool canSneeze = true;
 
     // Cough Mechanic:
     private int coughProjectileCount;
@@ -50,10 +48,11 @@ public class playerSpreadAbilities : MonoBehaviour
             // Cough mechanic (left-click or XBox 'A' button)
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 0"))
             {
-                if (canCough)
+                if (AbilityIcons.instance.canUseCough && !FluidCapsule.instance.isEmpty)
                 {
                     inAction = true;
-                    canCough = false;
+                    AbilityIcons.instance.UseCoughAbility();
+                    FluidCapsule.instance.RemoveFluid(GameData.instance.coughFluidCost);
                     CoughAbility();
                 }
             }
@@ -61,10 +60,11 @@ public class playerSpreadAbilities : MonoBehaviour
             // Sneeze mechanic (right-click or XBox 'B' button)
             if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("joystick button 1"))
             {
-                if (canSneeze)
+                if (AbilityIcons.instance.canUseSneeze && !FluidCapsule.instance.isEmpty)
                 {
                     inAction = true;
-                    canSneeze = false;
+                    AbilityIcons.instance.UseSneezeAbility();
+                    FluidCapsule.instance.RemoveFluid(GameData.instance.sneezeFluidCost);
                     SneezeAbility();
                 }
             }
@@ -88,13 +88,6 @@ public class playerSpreadAbilities : MonoBehaviour
         }
 
         inAction = false;
-        StartCoroutine(CoughCoolDown());
-    }
-
-    private IEnumerator CoughCoolDown()
-    {
-        yield return new WaitForSeconds(coughCoolDown);
-        canCough = true;
     }
 
     public void SneezeAbility()
@@ -122,13 +115,6 @@ public class playerSpreadAbilities : MonoBehaviour
         }
 
         inAction = false;
-        StartCoroutine(SneezeCoolDown());
-    }
-
-    private IEnumerator SneezeCoolDown()
-    {
-        yield return new WaitForSeconds(sneezeCoolDown);
-        canSneeze = true;
     }
 
     private Sprite GetRandomGermSprite()

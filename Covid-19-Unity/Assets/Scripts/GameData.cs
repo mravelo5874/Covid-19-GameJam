@@ -36,7 +36,13 @@ public class GameData : Singleton<GameData>
     [Header("Germ Data")]
     public float germdespawnProbability;
     public float germSpreadChance;
+    public float germImmuneTime;
 
+    // fluid capsule data:
+    [Header("Fluid Capsule Data")]
+    public float fluidCapsuleMaxCapacity;
+    public float coughFluidCost;
+    public float sneezeFluidCost;
 
 
     public void Start()
