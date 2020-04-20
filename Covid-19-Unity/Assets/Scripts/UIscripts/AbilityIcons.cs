@@ -35,6 +35,12 @@ public class AbilityIcons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // return if game is paused
+        if (GameManager.instance.isPaused)
+        {
+            return;
+        }
+        
         // update cough fill amount
         if (!canUseCough)
         {

@@ -59,6 +59,12 @@ public class npcController : MonoBehaviour
 
     void Update()
     {
+        // return if game is paused
+        if (GameManager.instance.isPaused)
+        {
+            return;
+        }
+
         HandleMovement();
     }
 
@@ -145,10 +151,6 @@ public class npcController : MonoBehaviour
 
         if (pathVectorList != null && pathVectorList.Count > 1) 
         {
-            foreach (Vector3 vector in pathVectorList)
-            {
-                print (vector);
-            }
             pathVectorList.RemoveAt(0);
             isMoving = true;
         }

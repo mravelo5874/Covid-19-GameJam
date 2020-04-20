@@ -18,6 +18,12 @@ public class SimpleAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // return if game is paused
+        if (GameManager.instance.isPaused)
+        {
+            return;
+        }
+        
         timer += Time.deltaTime;
         if (timer >= 1f)
         {

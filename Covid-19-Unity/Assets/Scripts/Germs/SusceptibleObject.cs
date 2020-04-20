@@ -20,6 +20,12 @@ public class SusceptibleObject : MonoBehaviour
 
     public void Infect()
     {
+        // return if game is paused
+        if (GameManager.instance.isPaused)
+        {
+            return;
+        }
+        
         if (status == Status.healthy)
         {
             status = Status.infected;
@@ -34,6 +40,12 @@ public class SusceptibleObject : MonoBehaviour
 
     private void AttemptToSpread()
     {
+        // return if game is paused
+        if (GameManager.instance.isPaused)
+        {
+            return;
+        }
+
         // spread if infected
         if (status == Status.infected)
         {

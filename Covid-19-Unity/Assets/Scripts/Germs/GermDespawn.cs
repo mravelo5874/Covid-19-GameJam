@@ -44,6 +44,12 @@ public class GermDespawn : MonoBehaviour
 
     private void AttemptToDespawn()
     {
+        // return if game is paused
+        if (GameManager.instance.isPaused)
+        {
+            return;
+        }
+
         float num = Random.value;
         if (num <= despawnProbability)
         {

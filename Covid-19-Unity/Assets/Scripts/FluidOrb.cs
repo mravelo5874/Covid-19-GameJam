@@ -10,8 +10,11 @@ public class FluidOrb : MonoBehaviour
         if (player != null)
         {
             // refill fluid capsule
-            FluidCapsule.instance.RefillFluid();
-            Destroy(this.gameObject);
+            if (!FluidCapsule.instance.isFull)
+            {
+                FluidCapsule.instance.RefillFluid();
+                Destroy(this.gameObject);
+            }
         }
     }
 }

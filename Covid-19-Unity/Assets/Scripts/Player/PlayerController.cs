@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Bools:
-    private bool isPaused = false;
     private bool isMove = false;
     private bool isRight = false; // keep track of what direction player is facing
 
@@ -34,12 +33,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isPaused)
-        {
-            // reset player vector
-            playerVector.x = 0;
-            playerVector.y = 0;
+        // reset player vector
+        playerVector.x = 0;
+        playerVector.y = 0;
 
+        if (!GameManager.instance.isPaused)
+        {
             // reset bools
             isMove = false;
 
@@ -69,13 +68,27 @@ public class PlayerController : MonoBehaviour
             }
             else 
             {
-                // stop player movement
-                playerRigidBody.velocity = Vector2.zero;
-                playerAnim.SetFloat("x-move", 0f);
-                playerAnim.SetFloat("y-move", 0f);
-            }
-            
+                StopPlayerMovement();
+            }    
         }
+        else
+        {
+            StopPlayerMovement();
+        }
+
+        // pause feature
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7"))
+        {
+            GameManager.instance.PauseGame();
+        }
+    }
+
+    private void StopPlayerMovement()
+    {
+        // stop player movement
+        playerRigidBody.velocity = Vector2.zero;
+        playerAnim.SetFloat("x-move", 0f);
+        playerAnim.SetFloat("y-move", 0f);
     }
     
     void FixedUpdate() 

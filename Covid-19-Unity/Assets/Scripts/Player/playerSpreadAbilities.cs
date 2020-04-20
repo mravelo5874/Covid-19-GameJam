@@ -43,6 +43,12 @@ public class playerSpreadAbilities : MonoBehaviour
 
     void Update() {
         
+        // return if game is paused
+        if (GameManager.instance.isPaused)
+        {
+            return;
+        }
+
         if (!inAction)
         {
             // Cough mechanic (left-click or XBox 'A' button)

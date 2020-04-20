@@ -18,7 +18,7 @@ public class FluidCapsule : MonoBehaviour
     private float fluidCapsuleCurrAmount;
 
     // capsule states:
-    private bool isFull;
+    public bool isFull;
     public bool isEmpty;
 
     // refill animation:
