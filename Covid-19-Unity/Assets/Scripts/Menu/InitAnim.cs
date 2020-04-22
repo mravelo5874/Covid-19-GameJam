@@ -18,11 +18,10 @@ public class InitAnim : MonoBehaviour
 
     private IEnumerator Init()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Fade.Play("FadeIn");
         yield return new WaitForSeconds(1f);
         Fade.Play("Clear");
-        yield return new WaitForSeconds(0.5f);
         CtrlZ.Play("ctrlz");
         yield return new WaitForSeconds(6f);
         Fade.Play("FadeOut");
