@@ -8,7 +8,7 @@ public class npcController : MonoBehaviour
     private float healthySpeed;
     private float infectedSpeed;
     private float currSpeed;
-    private Vector2Int position;
+    private Vector3 position;
     private Vector2Int target;
     private Vector2Int npcVector;
     private Vector2 directionVector; // what direction is the npc facing
@@ -40,27 +40,36 @@ public class npcController : MonoBehaviour
 
         npcRigidbody = GetComponent<Rigidbody2D>();
         npcSprite = GetComponent<SpriteRenderer>();
-        npcSprite.color = healthyColor;
 
+        // determine color and speed based on status
+        if (GetComponent<SusceptibleObject>().status == Status.healthy)
+        {
+            npcSprite.color = healthyColor;
+            currSpeed = healthySpeed;
+        }
+        else if (GetComponent<SusceptibleObject>().status == Status.infected)
+        {
+            npcSprite.color = infectedColor;
+            currSpeed = infectedSpeed;
+        }
+        
         animator = GetComponent<Animator>();
         animator.SetFloat("x-move", 0f);
         animator.SetFloat("y-move", 0f);
 
-        position = new Vector2Int(0, 0);
-        position.x = (int)transform.localPosition.x;
-        position.y = (int)transform.localPosition.y;
+        position = new Vector3(0, 0);
+        position.x = Mathf.Floor(transform.localPosition.x) + 0.5f;
+        position.y = Mathf.Floor(transform.localPosition.y) + 0.5f;
         transform.SetPositionAndRotation(new Vector3(position.x, position.y, 0f), Quaternion.identity);
 
         npcVector = new Vector2Int(0, 0);
         directionVector = new Vector2(0, -1);
-
-        currSpeed = healthySpeed;
     }
 
     void Update()
     {
         // return if game is paused
-        if (GameManager.instance.isPaused)
+        if (GameData.instance.isPaused)
         {
             return;
         }
@@ -73,7 +82,8 @@ public class npcController : MonoBehaviour
         if (pathVectorList != null) 
         {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
-            if (Vector3.Distance(transform.position, targetPosition) > 1f) 
+
+            if (Vector3.Distance(transform.position, targetPosition) > 1f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 

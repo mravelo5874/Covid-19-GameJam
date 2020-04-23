@@ -25,10 +25,12 @@ public class GameManager : MonoBehaviour
         // load data from GameData
         width = GameData.instance.gridWidth;
         height = GameData.instance.gridHeight;
+        Vector3 origin = GameData.instance.gridOrigin;
 
         worldCamera = Camera.main;
-        pathfinding = new Pathfinding(width, height);
+        pathfinding = new Pathfinding(width, height, origin);
         grid = pathfinding.GetGrid();
+        GameData.instance.LoadGameWalkableTiles();
 
         if (devTools)
         {

@@ -5,11 +5,23 @@ using UnityEngine.SceneManagement;
  
 public class GameData : Singleton<GameData> 
 {
-    // grid data:
-    [Header("Grid Data")]
+    // dev:
+    public bool devTools;
+    public bool isPaused;
+
+    // game grid data:
+    [Header("Game Grid Data")]
     public int gridWidth;
     public int gridHeight;
     public bool[] walkableTiles;
+    public Vector3 gridOrigin;
+
+    // menu grid data:
+    [Header("Menu Grid Data")]
+    public int menuGridWidth;
+    public int menuGridHeight;
+    public bool[] menuWalkableTiles;
+    public Vector3 menuGridOrigin;
 
     // player data:
     [Header("Player Data")]
@@ -45,30 +57,49 @@ public class GameData : Singleton<GameData>
     public float sneezeFluidCost;
 
 
-    public void Start()
+    void Start()
     {
         // init SaveSystem
         SaveSystem.Init();
+    }
 
-        // load data from file (json format)
-        string json = SaveSystem.Load();
+    public void LoadMenuWalkableTiles()
+    {
+         // load data from file (json format)
+        string json = SaveSystem.LoadMenuTiles();
         if (json != null)
         {
             //print("load: " + json);
             SaveObject saveObject = JsonUtility.FromJson<SaveObject>(json);
             walkableTiles = saveObject.dataArray;
-            GameManager.instance.SetGridWalkableData(walkableTiles);
+            MenuGameManager.instance.SetGridWalkableData(walkableTiles);
         }
         else
         {
             walkableTiles = new bool[gridWidth * gridHeight];
         }
-        
+    }
+
+    public void LoadGameWalkableTiles()
+    {
+         // load data from file (json format)
+        string json = SaveSystem.LoadGameTiles();
+        if (json != null)
+        {
+            //print("load: " + json);
+            SaveObject saveObject = JsonUtility.FromJson<SaveObject>(json);
+            walkableTiles = saveObject.dataArray;
+            MenuGameManager.instance.SetGridWalkableData(walkableTiles);
+        }
+        else
+        {
+            walkableTiles = new bool[gridWidth * gridHeight];
+        }
     }
     
     public void OnGUI()
     {
-        if (GameManager.instance.devTools)
+        if (devTools)
         {
             // reload scene
             if (GUI.Button(new Rect(10, 10, 80, 30), "Restart")) 
@@ -76,15 +107,26 @@ public class GameData : Singleton<GameData>
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
-            // save grid layout
-            if (GUI.Button(new Rect(10, 50, 80, 30), "Save Grid"))
+            // save game grid layout
+            if (GUI.Button(new Rect(10, 50, 120, 30), "Save Game Grid"))
             {
                 walkableTiles = GameManager.instance.GetGridWalkableData();
                 SaveObject saveObject = new SaveObject();
                 saveObject.dataArray = walkableTiles;
                 string json = JsonUtility.ToJson(saveObject);
                 //print ("save: " + json);
-                SaveSystem.Save(json);
+                SaveSystem.SaveGameTiles(json);
+            }
+
+            // save menu grid layout
+            if (GUI.Button(new Rect(10, 90, 120, 30), "Save Menu Grid"))
+            {
+                walkableTiles = MenuGameManager.instance.GetGridWalkableData();
+                SaveObject saveObject = new SaveObject();
+                saveObject.dataArray = walkableTiles;
+                string json = JsonUtility.ToJson(saveObject);
+                //print ("save: " + json);
+                SaveSystem.SaveMenuTiles(json);
             }
         }
     }

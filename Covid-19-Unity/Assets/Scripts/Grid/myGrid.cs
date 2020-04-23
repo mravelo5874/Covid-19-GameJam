@@ -116,6 +116,9 @@ public class myGrid <Type>
         return GetObject(pos.x, pos.y);
     }
 
-
+    public Vector3 GetGridOrigin()
+    {
+        return origin;
+    }
 
 }

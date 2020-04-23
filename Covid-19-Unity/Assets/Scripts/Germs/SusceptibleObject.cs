@@ -21,7 +21,7 @@ public class SusceptibleObject : MonoBehaviour
     public void Infect()
     {
         // return if game is paused
-        if (GameManager.instance.isPaused)
+        if (GameData.instance.isPaused)
         {
             return;
         }
@@ -41,7 +41,7 @@ public class SusceptibleObject : MonoBehaviour
     private void AttemptToSpread()
     {
         // return if game is paused
-        if (GameManager.instance.isPaused)
+        if (GameData.instance.isPaused)
         {
             return;
         }

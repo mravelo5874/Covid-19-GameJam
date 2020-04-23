@@ -19,7 +19,7 @@ public class SimpleAI : MonoBehaviour
     void Update()
     {
         // return if game is paused
-        if (GameManager.instance.isPaused)
+        if (GameData.instance.isPaused)
         {
             return;
         }
@@ -45,11 +45,11 @@ public class SimpleAI : MonoBehaviour
                 while (!walkable)
                 {
                     // choose a random x, y from the grid
-                    randPos = new Vector2Int(Random.Range(0, GameData.instance.gridWidth), Random.Range(0, GameData.instance.gridHeight));
-                    walkable = GameManager.instance.isWalkablePos(randPos);
+                    randPos = new Vector2Int(Random.Range(0, GameData.instance.menuGridWidth), Random.Range(0, GameData.instance.menuGridHeight));
+                    walkable = MenuGameManager.instance.isWalkablePos(randPos);
                 }
                 
-                npc.SetTargetPosition(GameManager.instance.GetWorldPos(randPos));
+                npc.SetTargetPosition(MenuGameManager.instance.GetWorldPos(randPos));
             }
         }
     }

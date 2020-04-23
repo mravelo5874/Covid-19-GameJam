@@ -14,10 +14,10 @@ public class Pathfinding
     private List<PathNode> openList; // what nodes to search
     private List<PathNode> closedList; // nodes that have already been searched
 
-    public Pathfinding(int width, int height)
+    public Pathfinding(int width, int height, Vector3 origin)
     {
         instance = this;
-        grid = new myGrid<PathNode>(width, height, 1f, Vector3.zero, (myGrid<PathNode> g, int x, int y) => new PathNode(g, x, y));
+        grid = new myGrid<PathNode>(width, height, 1f, origin, (myGrid<PathNode> g, int x, int y) => new PathNode(g, x, y));
     }
 
     public myGrid<PathNode> GetGrid()
@@ -38,7 +38,8 @@ public class Pathfinding
             List<Vector3> vectorPath = new List<Vector3>();
             foreach (PathNode node in path)
             {
-                vectorPath.Add(new Vector3(node.x, node.y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * 0.5f);
+                Vector3 pathNode = new Vector3(node.x, node.y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * 0.5f;
+                vectorPath.Add(pathNode + grid.GetGridOrigin());
             }
             return vectorPath;
         }
@@ -180,6 +181,15 @@ public class Pathfinding
             currNode = currNode.cameFromNode;
         }
         path.Reverse();
+
+        if (path != null)
+        {
+            for (int i = 0; i < path.Count - 1; i++)
+            {
+                Debug.DrawLine(new Vector3(path[i].x - 15, path[i].y - 9) * 1f + Vector3.one * 0.5f, new Vector3(path[i+1].x - 15, path[i+1].y - 9) * 1f + Vector3.one * 0.5f, Color.red, 5f);
+            }
+        }
+
         return path;
     }
 

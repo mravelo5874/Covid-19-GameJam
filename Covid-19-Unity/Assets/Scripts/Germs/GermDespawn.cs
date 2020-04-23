@@ -45,7 +45,7 @@ public class GermDespawn : MonoBehaviour
     private void AttemptToDespawn()
     {
         // return if game is paused
-        if (GameManager.instance.isPaused)
+        if (GameData.instance.isPaused)
         {
             return;
         }

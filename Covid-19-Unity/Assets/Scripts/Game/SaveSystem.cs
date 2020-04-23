@@ -6,7 +6,8 @@ using System.IO;
 public static class SaveSystem 
 {
     public static readonly string SAVE_FOLDER = Application.dataPath + "/Saves/";
-    public static readonly string FILE_NAME = "gridSave.txt";
+    public static readonly string GAME_FILE_NAME = "gameGridSave.txt";
+    public static readonly string MENU_FILE_NAME = "menuGridSave.txt";
 
 
     public static void Init()
@@ -18,16 +19,34 @@ public static class SaveSystem
         }
     }
 
-    public static void Save(string saveString)
+    public static void SaveGameTiles(string saveString)
     {
-        File.WriteAllText(SAVE_FOLDER + FILE_NAME, saveString);
+        File.WriteAllText(SAVE_FOLDER + GAME_FILE_NAME, saveString);
     }
 
-    public static string Load()
+    public static void SaveMenuTiles(string saveString)
     {
-        if (File.Exists(SAVE_FOLDER + FILE_NAME))
+        File.WriteAllText(SAVE_FOLDER + MENU_FILE_NAME, saveString);
+    }
+
+    public static string LoadGameTiles()
+    {
+        if (File.Exists(SAVE_FOLDER + GAME_FILE_NAME))
         {
-            string saveString = File.ReadAllText(SAVE_FOLDER + FILE_NAME);
+            string saveString = File.ReadAllText(SAVE_FOLDER + GAME_FILE_NAME);
+            return saveString;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public static string LoadMenuTiles()
+    {
+        if (File.Exists(SAVE_FOLDER + MENU_FILE_NAME))
+        {
+            string saveString = File.ReadAllText(SAVE_FOLDER + MENU_FILE_NAME);
             return saveString;
         }
         else
