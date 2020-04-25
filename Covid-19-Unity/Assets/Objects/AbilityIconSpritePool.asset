@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AbilityIconSpritePool
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: -2978653956524333172, guid: a122716a6c8d334409423c2b7ca65875, type: 3}
-  - {fileID: -299690340437171572, guid: a122716a6c8d334409423c2b7ca65875, type: 3}
-  - {fileID: -1290855366162983238, guid: a122716a6c8d334409423c2b7ca65875, type: 3}
-  - {fileID: -2248273014285675650, guid: a122716a6c8d334409423c2b7ca65875, type: 3}
+  - {fileID: 948070777863146507, guid: b4ea634fc87eca44d8e988d332b60259, type: 3}
+  - {fileID: -8594280708994610747, guid: b4ea634fc87eca44d8e988d332b60259, type: 3}
+  - {fileID: 5817358221636254284, guid: b4ea634fc87eca44d8e988d332b60259, type: 3}
+  - {fileID: 6274609191607935671, guid: b4ea634fc87eca44d8e988d332b60259, type: 3}

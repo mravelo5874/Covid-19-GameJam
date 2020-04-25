@@ -12,11 +12,10 @@ public class GameTimer : MonoBehaviour
     private bool timerGoing = false;
 
 
-    void Start()
+    void Awake()
     {
         instance = this;
         timerText = GetComponentInChildren<TextMeshProUGUI>();
-        StartTimer();
     }
 
     void Update()

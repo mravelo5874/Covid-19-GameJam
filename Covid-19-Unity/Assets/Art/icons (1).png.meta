@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: a122716a6c8d334409423c2b7ca65875
+guid: b4ea634fc87eca44d8e988d332b60259
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2978653956524333172
-    second: icons_0
+      213: 948070777863146507
+    second: icons (1)_0
   - first:
-      213: -299690340437171572
-    second: icons_1
+      213: -8594280708994610747
+    second: icons (1)_1
   - first:
-      213: -1290855366162983238
-    second: icons_2
+      213: 5817358221636254284
+    second: icons (1)_2
   - first:
-      213: -2248273014285675650
-    second: icons_3
+      213: 6274609191607935671
+    second: icons (1)_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,7 +98,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: icons_0
+      name: icons (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e4d8f434ba7fb046bb485e896057553
-      internalID: -2978653956524333172
+      spriteID: 9da8191eaec03c94f9bd5b7f8261b9fb
+      internalID: 948070777863146507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icons_1
+      name: icons (1)_1
       rect:
         serializedVersion: 2
         x: 32
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 264909a158399104eb50d9a141580522
-      internalID: -299690340437171572
+      spriteID: 40cc348fa2598bf4094d54bb1fee4b81
+      internalID: -8594280708994610747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icons_2
+      name: icons (1)_2
       rect:
         serializedVersion: 2
         x: 0
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8729c288fce9a34ab45a5c0c05cd0bd
-      internalID: -1290855366162983238
+      spriteID: fd8e5b6bfb100a4448fc6e7b6b6f3d61
+      internalID: 5817358221636254284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icons_3
+      name: icons (1)_3
       rect:
         serializedVersion: 2
         x: 32
@@ -175,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b696370b00468743baea9343705c5da
-      internalID: -2248273014285675650
+      spriteID: efab879eab639244ea7382471be4efb0
+      internalID: 6274609191607935671
       vertices: []
       indices: 
       edges: []

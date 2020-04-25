@@ -135,4 +135,9 @@ public class PlayerController : MonoBehaviour
     {
         return playerRigidBody.velocity;
     }
+
+    public void UpgradeSpeed()
+    {
+        playerSpeed += 25;
+    }
 }

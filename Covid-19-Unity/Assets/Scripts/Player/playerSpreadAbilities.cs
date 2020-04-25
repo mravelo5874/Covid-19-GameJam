@@ -128,4 +128,44 @@ public class playerSpreadAbilities : MonoBehaviour
         int num = Random.Range(0, 8);
         return germSpritePool.sprites[num];
     }
+
+    public void UpgradeSneezeProjectile()
+    {
+        sneezeProjectileCount += 20;
+        sneezeCoolDown -= 0.5f;
+        if (sneezeCoolDown <= 1f)
+        {
+            sneezeCoolDown = 1f;
+        }
+    }
+
+    public void UpgradeCoughProjectile()
+    {
+        coughProjectileCount += 20;
+        coughCoolDown -= 0.5f;
+        if (coughCoolDown <= 1f)
+        {
+            coughCoolDown = 1f;
+        }
+    }
+
+    public void UpgradeSneezeSpeed()
+    {
+        sneezeGermSpeed += 20;
+        sneezeCoolDown -= 0.5f;
+        if (sneezeCoolDown <= 1f)
+        {
+            sneezeCoolDown = 1f;
+        }
+    }
+
+    public void UpgradeCoughSpeed()
+    {
+        coughGermSpeed += 20;
+        coughCoolDown -= 0.5f;
+        if (coughCoolDown <= 1f)
+        {
+            coughCoolDown = 1f;
+        }
+    }
 }

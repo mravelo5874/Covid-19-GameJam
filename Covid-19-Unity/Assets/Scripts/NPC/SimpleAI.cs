@@ -45,11 +45,33 @@ public class SimpleAI : MonoBehaviour
                 while (!walkable)
                 {
                     // choose a random x, y from the grid
-                    randPos = new Vector2Int(Random.Range(0, GameData.instance.menuGridWidth), Random.Range(0, GameData.instance.menuGridHeight));
-                    walkable = MenuGameManager.instance.isWalkablePos(randPos);
+                    if (MenuGameManager.instance != null)
+                    {
+                        randPos = new Vector2Int(Random.Range(0, GameData.instance.menuGridWidth), Random.Range(0, GameData.instance.menuGridHeight));
+                    }
+                    else
+                    {
+                        randPos = new Vector2Int(Random.Range(0, GameData.instance.gridWidth), Random.Range(0, GameData.instance.gridHeight));
+                    }
+                    
+                    if (MenuGameManager.instance != null)
+                    {
+                        walkable = MenuGameManager.instance.isWalkablePos(randPos);
+                    }
+                    else
+                    {
+                        walkable = GameManager.instance.isWalkablePos(randPos);
+                    }
                 }
                 
-                npc.SetTargetPosition(MenuGameManager.instance.GetWorldPos(randPos));
+                if (MenuGameManager.instance != null)
+                {
+                    npc.SetTargetPosition(MenuGameManager.instance.GetWorldPos(randPos));
+                }
+                else
+                {
+                    npc.SetTargetPosition(GameManager.instance.GetWorldPos(randPos));
+                }
             }
         }
     }

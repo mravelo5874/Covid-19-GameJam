@@ -116,4 +116,10 @@ public class FluidCapsule : MonoBehaviour
     {
         isRefilling = true;
     }
+
+    public void UpgradeCapsuleMax()
+    {
+        fluidCapsuleMaxCapacity += 20;
+        UpdateFluidCapsule();
+    }
 }

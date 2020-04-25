@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool devTools = false;
     public static GameManager instance { get; private set; }
 
     [SerializeField] private PathfindingVisual pathfindingVisual;
@@ -13,12 +12,15 @@ public class GameManager : MonoBehaviour
     private myGrid<PathNode> grid;
     private Camera worldCamera;
 
+    public Animator Fade;
+
     private int width, height;
 
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
+        Fade.Play("Black");
 
         // load data from GameData
         width = GameData.instance.gridWidth;
@@ -30,17 +32,20 @@ public class GameManager : MonoBehaviour
         grid = pathfinding.GetGrid();
         GameData.instance.LoadGameWalkableTiles();
 
-        if (devTools)
+        if (GameData.instance.devTools)
         {
             grid.DrawGrid();
             pathfindingVisual.SetGrid(grid);
         }
+
+        // start game
+        StartCoroutine(GameInit());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (devTools)
+        if (GameData.instance.devTools)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -109,5 +114,16 @@ public class GameManager : MonoBehaviour
                 i++;
             }
         }
+    }
+
+    private IEnumerator GameInit()
+    {
+        Fade.Play("FadeIn");
+        GameData.instance.PauseGame();
+        yield return new WaitForSeconds(1f);
+        Fade.Play("Clear");
+        yield return new WaitForSeconds(1f);
+        GameTimer.instance.StartTimer();
+        GameData.instance.PauseGame();
     }
 }

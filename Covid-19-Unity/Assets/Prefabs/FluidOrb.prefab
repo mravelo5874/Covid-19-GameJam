@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8210437769667126106}
   - component: {fileID: 214457967111173564}
   - component: {fileID: 9209541154555289394}
-  - component: {fileID: 607006401937786303}
   - component: {fileID: 4933119207179603485}
   m_Layer: 0
   m_Name: FluidOrb
@@ -70,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1262962341
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 2214683806062304926, guid: f9f70df9fc45e7e49a7cc4eef472bdfd,
     type: 3}
@@ -100,25 +99,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
---- !u!95 &607006401937786303
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6780573955121662874}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 92140575f15c9d140b6c8dd95eb9419b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4933119207179603485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85964fd4fe51ec541b6f3bdc72718c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  germSpritePool: {fileID: 11400000, guid: ae342e39c5b258c41815376cbbb35276, type: 2}
+  projectileAmount: 25
+  projectileSpeed: 100
+  germPrefab: {fileID: 8044954546509658248, guid: e7ca8cadafe66654ea86cb8053888796,
+    type: 3}

@@ -88,11 +88,35 @@ public class GameData : Singleton<GameData>
             //print("load: " + json);
             SaveObject saveObject = JsonUtility.FromJson<SaveObject>(json);
             walkableTiles = saveObject.dataArray;
-            MenuGameManager.instance.SetGridWalkableData(walkableTiles);
+
+            // load into game
+            if (MenuGameManager.instance != null)
+            {
+                MenuGameManager.instance.SetGridWalkableData(walkableTiles);
+            }
+            else
+            {
+                GameManager.instance.SetGridWalkableData(walkableTiles);
+            }
+            
         }
         else
         {
             walkableTiles = new bool[gridWidth * gridHeight];
+            for (int i = 0; i < gridWidth * gridHeight; i++)
+            {
+                walkableTiles[i] = false;
+            }
+
+            // load into game
+            if (MenuGameManager.instance != null)
+            {
+                MenuGameManager.instance.SetGridWalkableData(walkableTiles);
+            }
+            else
+            {
+                GameManager.instance.SetGridWalkableData(walkableTiles);
+            }
         }
     }
     
