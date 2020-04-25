@@ -38,11 +38,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Water
+    uniqueID: 1253265283
+    locked: 0
   - name: Ground
     uniqueID: 4172443157
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Buildings
+    uniqueID: 3241889173
     locked: 0
   - name: Player
     uniqueID: 3426130191

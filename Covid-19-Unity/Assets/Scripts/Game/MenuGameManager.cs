@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuGameManager : MonoBehaviour
 {
     public static MenuGameManager instance { get; private set; }
+    public Animator Fade;
 
     [SerializeField] private PathfindingVisual pathfindingVisual;
     private Pathfinding pathfinding;
@@ -17,6 +18,10 @@ public class MenuGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // intro fade animation
+        Fade.Play("Black");
+        StartCoroutine(Init());
+
         instance = this;
 
         // load data from GameData
@@ -69,6 +74,14 @@ public class MenuGameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator Init()
+    {
+        yield return new WaitForSeconds(1f);
+        Fade.Play("FadeIn");
+        yield return new WaitForSeconds(1f);
+        Fade.Play("Clear");
+    }
+
     public bool isWalkablePos(Vector2Int pos)
     {
         return grid.GetObject(pos.x, pos.y).isWalkable;
@@ -118,5 +131,37 @@ public class MenuGameManager : MonoBehaviour
     public void PauseGame()
     {
         GameData.instance.isPaused = !GameData.instance.isPaused;
+    }
+
+    public void LoadGameScene()
+    {
+        // outro fade animation
+        Fade.Play("Clear");
+        StartCoroutine(LoadGame());
+    }
+
+    private IEnumerator LoadGame()
+    {
+        Fade.Play("FadeOut");
+        yield return new WaitForSeconds(1f);
+        Fade.Play("Black");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void ExitGameScene()
+    {
+        // outro fade animation
+        Fade.Play("Clear");
+        StartCoroutine(ExitGame());
+    }
+
+    private IEnumerator ExitGame()
+    {
+        Fade.Play("FadeOut");
+        yield return new WaitForSeconds(1f);
+        Fade.Play("Black");
+        yield return new WaitForSeconds(1f);
+        Application.Quit();
     }
 }

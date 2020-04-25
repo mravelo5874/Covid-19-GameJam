@@ -41,6 +41,12 @@ public class PopulationBar : MonoBehaviour
         else
         {
             int index = (int)(SPRITE_NUM * percent);
+            
+            if (index > SPRITE_NUM || index < 0)
+            {
+                index = 0;
+            }
+
             image.sprite = spritePool.sprites[index];
         } 
     }

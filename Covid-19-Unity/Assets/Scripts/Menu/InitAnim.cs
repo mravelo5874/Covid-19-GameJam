@@ -23,7 +23,7 @@ public class InitAnim : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Fade.Play("Clear");
         CtrlZ.Play("ctrlz");
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
         Fade.Play("FadeOut");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("MainMenu");

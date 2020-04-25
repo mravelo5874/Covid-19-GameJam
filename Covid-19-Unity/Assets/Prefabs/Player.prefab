@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4901594627222693186}
   - component: {fileID: 4901594627222693198}
   - component: {fileID: 4901594627222693187}
+  - component: {fileID: 176080820186636235}
   - component: {fileID: 4901594627222693188}
   m_Layer: 0
   m_Name: Player
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -868837105
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -5496743025088367820, guid: 44f6039d4a9e0f44dae96f1ceb5d3e3c,
     type: 3}
@@ -153,6 +154,18 @@ MonoBehaviour:
   germPrefab: {fileID: 8044954546509658248, guid: e7ca8cadafe66654ea86cb8053888796,
     type: 3}
   germSpritePool: {fileID: 11400000, guid: ae342e39c5b258c41815376cbbb35276, type: 2}
+--- !u!114 &176080820186636235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901594627222693197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56ce6ed01740614eab27062dea31ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &4901594627222693188
 BoxCollider2D:
   m_ObjectHideFlags: 0

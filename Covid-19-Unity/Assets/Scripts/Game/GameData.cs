@@ -56,7 +56,6 @@ public class GameData : Singleton<GameData>
     public float coughFluidCost;
     public float sneezeFluidCost;
 
-
     void Start()
     {
         // init SaveSystem
@@ -129,6 +128,12 @@ public class GameData : Singleton<GameData>
                 SaveSystem.SaveMenuTiles(json);
             }
         }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = !isPaused;
+        
     }
 }
 

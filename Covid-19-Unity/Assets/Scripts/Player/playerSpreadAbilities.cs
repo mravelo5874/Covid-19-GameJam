@@ -44,7 +44,7 @@ public class playerSpreadAbilities : MonoBehaviour
     void Update() {
         
         // return if game is paused
-        if (GameManager.instance.isPaused)
+        if (GameData.instance.isPaused)
         {
             return;
         }

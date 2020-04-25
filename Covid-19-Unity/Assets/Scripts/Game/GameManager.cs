@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool isPaused = false;
-
     public bool devTools = false;
     public static GameManager instance { get; private set; }
 
@@ -111,11 +109,5 @@ public class GameManager : MonoBehaviour
                 i++;
             }
         }
-    }
-
-    public void PauseGame()
-    {
-        isPaused = !isPaused;
-        
     }
 }

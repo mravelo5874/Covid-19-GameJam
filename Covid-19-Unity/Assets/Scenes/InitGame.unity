@@ -606,6 +606,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fade
       objectReference: {fileID: 0}
+    - target: {fileID: 649242392009044329, guid: 220905fa802daf546ac3e29d0d97fbfc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 649242392009044330, guid: 220905fa802daf546ac3e29d0d97fbfc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -710,6 +715,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 649242392009044332, guid: 220905fa802daf546ac3e29d0d97fbfc,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649242392009044332, guid: 220905fa802daf546ac3e29d0d97fbfc,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649242392009044332, guid: 220905fa802daf546ac3e29d0d97fbfc,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 220905fa802daf546ac3e29d0d97fbfc, type: 3}

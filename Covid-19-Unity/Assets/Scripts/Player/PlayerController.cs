@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         playerVector.x = 0;
         playerVector.y = 0;
 
-        if (!GameManager.instance.isPaused)
+        if (!GameData.instance.isPaused)
         {
             // reset bools
             isMove = false;
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         // pause feature
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7"))
         {
-            GameManager.instance.PauseGame();
+            GameData.instance.PauseGame();
         }
     }
 
