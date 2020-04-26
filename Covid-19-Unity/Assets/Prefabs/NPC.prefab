@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9029829276989770988}
   - component: {fileID: 9029829276989770990}
   - component: {fileID: 5410336939713617594}
+  - component: {fileID: 4493920316085756072}
   - component: {fileID: 9029829276989770985}
   - component: {fileID: 2997444430418252458}
   - component: {fileID: 209530622156434803}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -868837105
+  m_SortingLayerID: -1053078123
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5496743025088367820, guid: 44f6039d4a9e0f44dae96f1ceb5d3e3c,
@@ -154,6 +155,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.74, y: 1.36}
   m_EdgeRadius: 0
+--- !u!114 &4493920316085756072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9029829276989770991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56ce6ed01740614eab27062dea31ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9029829276989770985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,3 +225,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveProb: 0.5
+  inRange: 0

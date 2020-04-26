@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8540358100972776806}
   - component: {fileID: 6099865554413443924}
   - component: {fileID: 7007513407872194189}
+  - component: {fileID: 2529347166040968808}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -111,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953f4f7c26cae32488258502d4fec0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomizeItem: 1
   itemType: 0
   itemIconPool: {fileID: 11400000, guid: 181d0fe9c87ab7b47824e81d8f33bce6, type: 2}
   germSpritePool: {fileID: 11400000, guid: ae342e39c5b258c41815376cbbb35276, type: 2}
@@ -118,3 +120,17 @@ MonoBehaviour:
   projectileSpeed: 150
   germPrefab: {fileID: 8044954546509658248, guid: e7ca8cadafe66654ea86cb8053888796,
     type: 3}
+--- !u!114 &2529347166040968808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056699715700007254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f24a54f84d69948a75a9fada4bd5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedUpDown: 3
+  distanceUpDown: 0.4

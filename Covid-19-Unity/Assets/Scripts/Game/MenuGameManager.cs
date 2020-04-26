@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuGameManager : MonoBehaviour
 {
     public static MenuGameManager instance { get; private set; }
+
+    public GameObject MainMenu;
+    public GameObject PlayMenu;
+    public Button AdvanceMode;
+    public GameObject SettingsMenu;
+    public GameObject Credits;
     public Animator Fade;
 
     [SerializeField] private PathfindingVisual pathfindingVisual;
@@ -19,10 +26,24 @@ public class MenuGameManager : MonoBehaviour
     void Start()
     {
         // intro fade animation
+        Fade.gameObject.SetActive(true);
         Fade.Play("Black");
-        StartCoroutine(Init());
 
+        // advance mode
+        AdvanceMode.interactable = GameData.instance.isAdvanceModeUnlocked();
+
+        // start menu coroutine
+        StartCoroutine(Init());
         instance = this;
+
+        // mute npcs
+        GameData.instance.muteFX = true;
+
+        // set menus active
+        MainMenu.SetActive(true);
+        PlayMenu.SetActive(false);
+        SettingsMenu.SetActive(false);
+        Credits.SetActive(false);
 
         // load data from GameData
         width = GameData.instance.menuGridWidth;
@@ -133,26 +154,66 @@ public class MenuGameManager : MonoBehaviour
         GameData.instance.isPaused = !GameData.instance.isPaused;
     }
 
-    public void LoadGameScene()
+    public void LoadTutorialGame()
     {
         // outro fade animation
         Fade.Play("Clear");
-        StartCoroutine(LoadGame());
+        Fade.GetComponent<Image>().raycastTarget = true;
+        AudioManager.inst.PlaySound(Sound.select);
+        StartCoroutine(TutorialGame());
     }
 
-    private IEnumerator LoadGame()
+    private IEnumerator TutorialGame()
     {
         Fade.Play("FadeOut");
         yield return new WaitForSeconds(1f);
         Fade.Play("Black");
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void LoadNormalGame()
+    {
+        // outro fade animation
+        Fade.Play("Clear");
+        Fade.GetComponent<Image>().raycastTarget = true;
+        AudioManager.inst.PlaySound(Sound.select);
+        StartCoroutine(NormalGame());
+    }
+
+    private IEnumerator NormalGame()
+    {
+        Fade.Play("FadeOut");
+        yield return new WaitForSeconds(1f);
+        Fade.Play("Black");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("GameScene100Man");
+    }
+
+    public void LoadAdvancedGame()
+    {
+        // outro fade animation
+        Fade.Play("Clear");
+        Fade.GetComponent<Image>().raycastTarget = true;
+        AudioManager.inst.PlaySound(Sound.select);
+        StartCoroutine(AdvancedGame());
+    }
+
+    private IEnumerator AdvancedGame()
+    {
+        Fade.Play("FadeOut");
+        yield return new WaitForSeconds(1f);
+        Fade.Play("Black");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("GameScene200Man");
     }
 
     public void ExitGameScene()
     {
         // outro fade animation
         Fade.Play("Clear");
+        Fade.GetComponent<Image>().raycastTarget = true;
+        AudioManager.inst.PlaySound(Sound.select);
         StartCoroutine(ExitGame());
     }
 
@@ -163,5 +224,51 @@ public class MenuGameManager : MonoBehaviour
         Fade.Play("Black");
         yield return new WaitForSeconds(1f);
         Application.Quit();
+    }
+
+    public void GoToMainMenu()
+    {
+        AudioManager.inst.PlaySound(Sound.select);
+        MainMenu.SetActive(true);
+        PlayMenu.SetActive(false);
+        SettingsMenu.SetActive(false);
+        Credits.SetActive(false);
+    }
+
+    public void GoToPlayMenu()
+    {
+        AudioManager.inst.PlaySound(Sound.select);
+        MainMenu.SetActive(false);
+        PlayMenu.SetActive(true);
+        SettingsMenu.SetActive(false);
+        Credits.SetActive(false);
+    }
+
+    public void GoToSettingsMenu()
+    {
+        AudioManager.inst.PlaySound(Sound.select);
+        MainMenu.SetActive(false);
+        PlayMenu.SetActive(false);
+        SettingsMenu.SetActive(true);
+        Credits.SetActive(false);
+    }
+
+    public void GoToCredits()
+    {
+        AudioManager.inst.PlaySound(Sound.select);
+        MainMenu.SetActive(false);
+        PlayMenu.SetActive(false);
+        SettingsMenu.SetActive(false);
+        Credits.SetActive(true);
+    }
+
+    public void ChangeMusicVolume(float num)
+    {
+        AudioManager.inst.changeMusicVolume(num);
+    }
+
+    public void ChangeFXVolume(float num)
+    {
+        AudioManager.inst.changeFXVolume(num);
     }
 }

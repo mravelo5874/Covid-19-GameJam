@@ -7,14 +7,16 @@ public class SusceptibleObject : MonoBehaviour
     public Status status;
     public float chanceToSpread;
     private npcSpreadAbilities spreadAbilities;
+    private SimpleAI simpleAI;
 
     void Start() 
     {
         // load data from GameData:
         chanceToSpread = GameData.instance.npcSpreadChance;
 
+        simpleAI = GetComponent<SimpleAI>();
         spreadAbilities = GetComponent<npcSpreadAbilities>();
-        float rand = Random.Range(8f, 12f);
+        float rand = Random.Range(5f, 7f);
         InvokeRepeating("AttemptToSpread", 1f, rand);  //1s delay, repeat every x seconds
     }
 
@@ -41,7 +43,7 @@ public class SusceptibleObject : MonoBehaviour
     private void AttemptToSpread()
     {
         // return if game is paused
-        if (GameData.instance.isPaused)
+        if (GameData.instance.isPaused || !simpleAI.inRange)
         {
             return;
         }

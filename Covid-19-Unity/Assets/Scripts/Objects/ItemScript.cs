@@ -9,6 +9,7 @@ public enum ItemType
 
 public class ItemScript : MonoBehaviour
 {
+    public bool randomizeItem;
     public ItemType itemType;
     public SpritePool itemIconPool;
     public SpritePool germSpritePool;
@@ -26,8 +27,13 @@ public class ItemScript : MonoBehaviour
         germParent = GameObject.Find("GermPool").GetComponent<Transform>();
 
         // become random item
-        int index = Random.Range(0, 6);
-        itemType = (ItemType)index;
+        int index = (int)itemType;
+        if (randomizeItem)
+        {
+            index = Random.Range(0, 6);
+            itemType = (ItemType)index;
+        }
+        
         sprite.sprite = itemIconPool.sprites[index];
     }
 
@@ -61,6 +67,7 @@ public class ItemScript : MonoBehaviour
                 other.GetComponent<PlayerController>().UpgradeSpeed();
             }
 
+            AudioManager.inst.PlaySound(Sound.powerUp);
             StartCoroutine(DeleteItem());
         }
     }

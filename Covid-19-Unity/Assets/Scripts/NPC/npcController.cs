@@ -88,7 +88,7 @@ public class npcController : MonoBehaviour
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 
                 int x = 0, y = 0;
-                if (moveDir.x != 0)
+                if (moveDir.x > 0.3f || moveDir.x < -0.3f)
                 {
                     if (moveDir.x > 0)
                     {
@@ -99,7 +99,7 @@ public class npcController : MonoBehaviour
                         x = -1;
                     }
                 }
-                if (moveDir.y != 0)
+                if (moveDir.y > 0.3f || moveDir.y < -0.3f)
                 {
                     if (moveDir.y > 0)
                     {
@@ -174,6 +174,10 @@ public class npcController : MonoBehaviour
 
     public void BecomeInfected()
     {
+        if (!GameData.instance.muteFX)
+        {
+            AudioManager.inst.PlaySound(Sound.infect);
+        }
         npcSprite.color = infectedColor;
         currSpeed = infectedSpeed;
     }
@@ -186,5 +190,13 @@ public class npcController : MonoBehaviour
     public Vector2 GetNPCDirection()
     {
         return directionVector;
+    }
+
+    public void StopMoving()
+    {
+        pathVectorList = null;
+        animator.SetFloat("x-move", 0f);
+        animator.SetFloat("y-move", 0f);
+        isMoving = false;
     }
 }

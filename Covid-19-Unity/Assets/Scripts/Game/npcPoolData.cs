@@ -21,12 +21,15 @@ public struct npcDataNode
 
 public class npcPoolData : MonoBehaviour
 {
+    public bool collectData = false;
+    public bool isTutorial = false;
     public static npcPoolData instance { get; private set; }
     private List<npcDataNode> npcData;
     private List<SusceptibleObject> npcPool;
     public int totalNpcCount = 1;
     public int infectedNpcCount = 0;
     private int currTime = 0;
+    private bool isWin = false;
 
     void Awake()
     {
@@ -57,6 +60,11 @@ public class npcPoolData : MonoBehaviour
 
     public void CollectData()
     {
+        if (isWin)
+        {
+            return;
+        }
+
         int count = 0;
         foreach(SusceptibleObject npc in npcPool)
         {
@@ -68,15 +76,19 @@ public class npcPoolData : MonoBehaviour
         infectedNpcCount = count;
         currTime++;
 
-        npcDataNode node = new npcDataNode(currTime, infectedNpcCount);
-        npcData.Add(node);
+        if (infectedNpcCount >= totalNpcCount && !isTutorial)
+        {
+            GameManager.instance.WinGame();
+            isWin = true;
+        }
+
+        if (collectData)
+        {
+            npcDataNode node = new npcDataNode(currTime, infectedNpcCount);
+            npcData.Add(node);
+        }
 
         float percent = (float)infectedNpcCount/(float)totalNpcCount;
         PopulationBar.instance.UpdatePopulationBar();
-    }
-
-    public bool AllNpcsInfected()
-    {
-        return totalNpcCount == infectedNpcCount;
     }
 }

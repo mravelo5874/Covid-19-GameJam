@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7665571734304709749}
   - component: {fileID: 6645665766850062131}
-  - component: {fileID: 2741917719933303236}
+  - component: {fileID: 4308678014728368890}
   m_Layer: 0
   m_Name: New Sprite (1)
   m_TagString: Untagged
@@ -26,11 +26,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4983463959300611286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.25, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0.86, z: 0}
   m_LocalScale: {x: 1.21, y: 1.33, z: 1}
   m_Children: []
   m_Father: {fileID: 1438782747531499721}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6645665766850062131
 SpriteRenderer:
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2741917719933303236
+--- !u!114 &4308678014728368890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4258286253061028710}
   - component: {fileID: 6867631172957791214}
-  - component: {fileID: 7964176755039636042}
+  - component: {fileID: 808479694050985521}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -124,7 +124,7 @@ Transform:
   m_LocalScale: {x: 1.7251352, y: 2.16, z: 1}
   m_Children: []
   m_Father: {fileID: 1438782747531499721}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6867631172957791214
 SpriteRenderer:
@@ -161,8 +161,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1053078123
-  m_SortingLayer: 1
+  m_SortingLayerID: -868837105
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 384058854656272681, guid: f0259dd155defa3418bb220c6a3ee47f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7964176755039636042
+--- !u!114 &808479694050985521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,8 +216,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7665571734304709749}
   - {fileID: 4258286253061028710}
+  - {fileID: 7665571734304709749}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

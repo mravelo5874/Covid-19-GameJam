@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Bools:
     private bool isMove = false;
     private bool isRight = false; // keep track of what direction player is facing
+    public bool isControlable = true;
 
     // Movement:
     private float playerSpeed; // player movement speed
@@ -33,6 +34,27 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isControlable)
+        {
+            return;
+        }
+
+        // pause feature
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7"))
+        {
+            AudioManager.inst.PlaySound(Sound.pause);
+
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.PauseGame();
+            }
+            else
+            {
+                TutorialManager.instance.PauseGame();
+            }
+            
+        }
+
         // reset player vector
         playerVector.x = 0;
         playerVector.y = 0;
@@ -74,12 +96,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             StopPlayerMovement();
-        }
-
-        // pause feature
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7"))
-        {
-            GameData.instance.PauseGame();
         }
     }
 

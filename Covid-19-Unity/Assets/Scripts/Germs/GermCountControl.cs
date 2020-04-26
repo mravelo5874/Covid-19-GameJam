@@ -5,22 +5,31 @@ using UnityEngine;
 public class GermCountControl : MonoBehaviour
 {
     public int germThreshold;
+    public int totalGerms;
+    public bool isDestroying;
 
     // Update is called once per frame
     void Update()
     {
-        int germCount = transform.childCount;
-        if (germCount >= germThreshold)
+        if(isDestroying)
         {
-            DeleteGerms(germCount - germThreshold);
+            return;
+        }
+
+        totalGerms = transform.childCount;
+        if (totalGerms >= germThreshold)
+        {
+            DeleteGerms(totalGerms - germThreshold);
         }
     }
 
     private void DeleteGerms(int amount)
     {
+        isDestroying = true;
         for (int i = 0; i < amount; i++)
         {
             Destroy(transform.GetChild(0).gameObject);
         }
+        isDestroying = false;
     }
 }

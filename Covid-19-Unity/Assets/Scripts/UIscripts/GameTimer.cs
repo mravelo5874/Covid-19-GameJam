@@ -10,6 +10,7 @@ public class GameTimer : MonoBehaviour
     private TextMeshProUGUI timerText;
     private float timer = 0f;
     private bool timerGoing = false;
+    private string timerString;
 
 
     void Awake()
@@ -38,25 +39,38 @@ public class GameTimer : MonoBehaviour
 
                 if (sec <= 9)
                 {
-                    timerText.text = min.ToString() + ":0" + sec.ToString();
+                    timerString = min.ToString() + ":0" + sec.ToString();
+                    timerText.text = timerString;
                 }
                 else
                 {
-                    timerText.text = min.ToString() + ":" + sec.ToString();
+                    timerString = min.ToString() + ":" + sec.ToString();
+                    timerText.text = timerString;
                 }
             }
             else
             {
                 if (sec <= 9)
                 {
-                    timerText.text = "0:0" + sec.ToString();
+                    timerString = "0:0" + sec.ToString();
+                    timerText.text = timerString;
                 }
                 else
                 {
-                    timerText.text = "0:" + sec.ToString();
+                    timerString = "0:" + sec.ToString();
+                    timerText.text = timerString;
                 }
             }
         }
+    }
+    public string GetText()
+    {
+        return timerString;
+    }
+
+    public float GetTime()
+    {
+        return timer;
     }
 
     public void StartTimer()

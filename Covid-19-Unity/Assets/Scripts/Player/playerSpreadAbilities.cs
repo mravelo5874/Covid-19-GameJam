@@ -11,40 +11,19 @@ public class playerSpreadAbilities : MonoBehaviour
     // Bools:
     private bool inAction = false;
 
-    // Cough Mechanic:
-    private int coughProjectileCount;
-    private float coughCoolDown;
-    private float coughGermSpeed;
-    
-    // Sneeze Mechanic:
-    private int sneezeProjectileCount;
-    private float sneezeCoolDown;
-    private float sneezeGermSpeed;
-    private float sneezeSpread;
-
     // Refrences to other scripts:
     private PlayerController player;
 
     void Start() 
     {
-        // load data from GameData
-        coughProjectileCount = GameData.instance.coughProjectileCount;
-        coughCoolDown = GameData.instance.coughCooldown;
-        coughGermSpeed = GameData.instance.coughGermSpeed;
-
-        sneezeProjectileCount = GameData.instance.sneezeProjectileCount;
-        sneezeCoolDown = GameData.instance.sneezeCooldown;
-        sneezeGermSpeed = GameData.instance.sneezeGermSpeed;
-        sneezeSpread = GameData.instance.sneezeSpread;
-
         player = GetComponent<PlayerController>();     
         germParent = GameObject.Find("GermPool").GetComponent<Transform>();
     }
 
-    void Update() {
-        
+    void Update() 
+    {
         // return if game is paused
-        if (GameData.instance.isPaused)
+        if (GameData.instance.isPaused || !player.isControlable)
         {
             return;
         }
@@ -79,8 +58,10 @@ public class playerSpreadAbilities : MonoBehaviour
 
     public void CoughAbility()
     {
-        print ("cough-cough!");
-        for (int i = 0; i < coughProjectileCount; i++)
+        //print ("cough-cough!");
+        AudioManager.inst.PlaySound(Sound.cough);
+
+        for (int i = 0; i < GameData.instance.coughProjectileCount ; i++)
         {
             // instantiate germs an player head
             Vector3 initPos = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 0f);
@@ -89,8 +70,8 @@ public class playerSpreadAbilities : MonoBehaviour
             // add users's velocity
             germ.GetComponent<Rigidbody2D>().velocity += player.getPlayerVelocity();
             // apply force and torque
-            germ.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * coughGermSpeed);
-            germ.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-1f, 1f) * coughGermSpeed);
+            germ.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * GameData.instance.coughGermSpeed);
+            germ.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-1f, 1f) * GameData.instance.coughGermSpeed);
         }
 
         inAction = false;
@@ -98,10 +79,11 @@ public class playerSpreadAbilities : MonoBehaviour
 
     public void SneezeAbility()
     {
-        print("achooo!");
+        //print("achooo!");
+        AudioManager.inst.PlaySound(Sound.sneeze);
         Vector2 userDirection = userDirection = player.GetPlayerDirection();
 
-        for (int i = 0; i < sneezeProjectileCount; i++)
+        for (int i = 0; i < GameData.instance.sneezeProjectileCount; i++)
         {
             // instantiate germs an player head
             Vector3 initPos = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 0f);
@@ -112,11 +94,11 @@ public class playerSpreadAbilities : MonoBehaviour
             // randomize distance
             Vector2 randomDistance = userDirection * Random.Range(0.75f, 2f);
             // randomize spread
-            randomDistance.x = randomDistance.x + Random.Range(-sneezeSpread, sneezeSpread);
-            randomDistance.y = randomDistance.y + Random.Range(-sneezeSpread, sneezeSpread);
+            randomDistance.x = randomDistance.x + Random.Range(-GameData.instance.sneezeSpread, GameData.instance.sneezeSpread);
+            randomDistance.y = randomDistance.y + Random.Range(-GameData.instance.sneezeSpread, GameData.instance.sneezeSpread);
             // apply force and torque
-            germ.GetComponent<Rigidbody2D>().AddForce(randomDistance * sneezeGermSpeed);
-            germ.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-1f, 1f) * sneezeGermSpeed);
+            germ.GetComponent<Rigidbody2D>().AddForce(randomDistance * GameData.instance.sneezeGermSpeed);
+            germ.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-1f, 1f) * GameData.instance.sneezeGermSpeed);
   
         }
 
@@ -131,41 +113,51 @@ public class playerSpreadAbilities : MonoBehaviour
 
     public void UpgradeSneezeProjectile()
     {
-        sneezeProjectileCount += 20;
-        sneezeCoolDown -= 0.5f;
-        if (sneezeCoolDown <= 1f)
+        GameData.instance.sneezeProjectileCount += 10;
+        if (GameData.instance.sneezeProjectileCount > 50)
         {
-            sneezeCoolDown = 1f;
+            GameData.instance.sneezeProjectileCount = 50;
+        }
+
+        GameData.instance.sneezeCooldown -= 0.5f;
+        if (GameData.instance.sneezeCooldown <= 1f)
+        {
+            GameData.instance.sneezeCooldown = 1f;
         }
     }
 
     public void UpgradeCoughProjectile()
     {
-        coughProjectileCount += 20;
-        coughCoolDown -= 0.5f;
-        if (coughCoolDown <= 1f)
+        GameData.instance.coughProjectileCount += 10;
+        if (GameData.instance.coughProjectileCount > 50)
         {
-            coughCoolDown = 1f;
+            GameData.instance.coughProjectileCount = 50;
+        }
+
+        GameData.instance.coughCooldown -= 0.5f;
+        if (GameData.instance.coughCooldown  <= 1f)
+        {
+            GameData.instance.coughCooldown  = 1f;
         }
     }
 
     public void UpgradeSneezeSpeed()
     {
-        sneezeGermSpeed += 20;
-        sneezeCoolDown -= 0.5f;
-        if (sneezeCoolDown <= 1f)
+        GameData.instance.sneezeGermSpeed += 20;
+        GameData.instance.sneezeCooldown -= 0.5f;
+        if (GameData.instance.sneezeCooldown <= 1f)
         {
-            sneezeCoolDown = 1f;
+            GameData.instance.sneezeCooldown = 1f;
         }
     }
 
     public void UpgradeCoughSpeed()
     {
-        coughGermSpeed += 20;
-        coughCoolDown -= 0.5f;
-        if (coughCoolDown <= 1f)
+        GameData.instance.coughGermSpeed += 20;
+        GameData.instance.coughCooldown  -= 0.5f;
+        if (GameData.instance.coughCooldown  <= 1f)
         {
-            coughCoolDown = 1f;
+            GameData.instance.coughCooldown  = 1f;
         }
     }
 }

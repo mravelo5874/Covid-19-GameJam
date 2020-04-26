@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SimpleAI : MonoBehaviour
 {
+    public bool useAI = true;
     [Range(0,1)] public float moveProb; // probability of moving if idle
 
     private npcController npc;
     private float timer = 0f;
+    public bool inRange = false;
+
 
     void Start()
     {
@@ -19,7 +22,7 @@ public class SimpleAI : MonoBehaviour
     void Update()
     {
         // return if game is paused
-        if (GameData.instance.isPaused)
+        if (GameData.instance.isPaused || !inRange || !useAI)
         {
             return;
         }
@@ -29,6 +32,34 @@ public class SimpleAI : MonoBehaviour
         {
             AttemptToWalk();
             timer = 0f;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (!useAI)
+        {
+            return;
+        }
+        
+        if (other.GetComponent<DummyInRangeScript>() != null)
+        {
+            inRange = true;
+            AttemptToWalk();
+            timer = 0f;
+        }
+        else
+        {
+            inRange = false;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other) 
+    {
+        if (other.GetComponent<DummyInRangeScript>() != null)
+        {
+            inRange = false;
+            GetComponent<npcController>().StopMoving();
         }
     }
 

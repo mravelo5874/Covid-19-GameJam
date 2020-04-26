@@ -8,6 +8,7 @@ public class GameData : Singleton<GameData>
     // dev:
     public bool devTools;
     public bool isPaused;
+    public bool muteFX;
 
     // game grid data:
     [Header("Game Grid Data")]
@@ -60,6 +61,11 @@ public class GameData : Singleton<GameData>
     {
         // init SaveSystem
         SaveSystem.Init();
+    }
+
+    public bool isAdvanceModeUnlocked()
+    {
+        return SaveSystem.LoadAdvancedMode();
     }
 
     public void LoadMenuWalkableTiles()
@@ -157,7 +163,6 @@ public class GameData : Singleton<GameData>
     public void PauseGame()
     {
         isPaused = !isPaused;
-        
     }
 }
 

@@ -25,6 +25,7 @@ public class FluidOrb : MonoBehaviour
             if (!FluidCapsule.instance.isFull)
             {
                 FluidCapsule.instance.RefillFluid();
+                AudioManager.inst.PlaySound(Sound.refill);
                 StartCoroutine(DeleteItem());
             }
         }
