@@ -20,7 +20,7 @@ public class InitAnim : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         Fade.Play("FadeIn");
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
         CtrlZ.Play("ctrlz-NEW");
         yield return new WaitForSeconds(0.6f);
         Fade.Play("Clear");

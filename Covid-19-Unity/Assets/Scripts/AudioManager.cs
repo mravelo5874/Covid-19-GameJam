@@ -7,7 +7,7 @@ public enum Sound
     select, pause, sneeze, cough, powerUp, refill, infect, lose
 }
 
-public class AudioManager : Singleton<AudioManager> 
+public class AudioManager : MonoBehaviour
 {
     public static AudioManager inst { get; private set; }
 

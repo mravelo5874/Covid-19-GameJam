@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private int width, height;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         instance = this;
         Fade.Play("Black");
@@ -38,12 +38,14 @@ public class GameManager : MonoBehaviour
         pathfinding = new Pathfinding(width, height, origin);
         grid = pathfinding.GetGrid();
         GameData.instance.LoadGameWalkableTiles();
-
+        
+        /*
         if (GameData.instance.devTools)
         {
             grid.DrawGrid();
             pathfindingVisual.SetGrid(grid);
         }
+        */
 
         // start game
         StartCoroutine(GameInit());
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print ("Update");
+        /*
         if (GameData.instance.devTools)
         {
             if (Input.GetMouseButtonDown(0))
@@ -80,31 +84,18 @@ public class GameManager : MonoBehaviour
                 pathfinding.GetNode(XY.x, XY.y).ToggleIsWalkable();
             }
         }
+        */
 
         if (GameData.instance.isPaused)
         {
             if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("Fire1") > 0f && Input.GetAxis("Fire2") > 0f)
             {
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.RestartGame();
-                }
-                else
-                {
-                    TutorialManager.instance.RestartGame();
-                }
+                RestartGame();
             }
 
             if (Input.GetKeyDown(KeyCode.M) || Input.GetKey("joystick button 4") && Input.GetKey("joystick button 5"))
             {
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.ReturnToMenu();
-                }
-                else
-                {
-                    TutorialManager.instance.ReturnToMenu();
-                }
+                ReturnToMenu();
             }
         }
     }

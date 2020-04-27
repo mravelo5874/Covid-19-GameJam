@@ -178,16 +178,19 @@ public class MenuGameManager : MonoBehaviour
         Fade.Play("Clear");
         Fade.GetComponent<Image>().raycastTarget = true;
         AudioManager.inst.PlaySound(Sound.select);
-        StartCoroutine(NormalGame());
+        SceneManager.LoadScene("GameSceneNormal", LoadSceneMode.Single);
+        //StartCoroutine(NormalGame());
     }
 
     private IEnumerator NormalGame()
     {
-        Fade.Play("FadeOut");
+        //Fade.Play("FadeOut");
         yield return new WaitForSeconds(1f);
-        Fade.Play("Black");
+        //Fade.Play("Black");
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("GameScene100Man");
+        print ("Before Scene!");
+        //SceneManager.UnloadSceneAsync ("TavernScreen");
+        SceneManager.LoadScene("GameSceneNormal", LoadSceneMode.Single);
     }
 
     public void LoadAdvancedGame()
@@ -205,7 +208,7 @@ public class MenuGameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Fade.Play("Black");
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("GameScene200Man");
+        SceneManager.LoadScene("GameSceneAdvanced", LoadSceneMode.Single);
     }
 
     public void ExitGameScene()

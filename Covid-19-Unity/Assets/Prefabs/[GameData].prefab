@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5e10bfc4321224688ea85f5cd07a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPersistant: 1
+  isPersistant: 0
   musicSource: {fileID: 311894216310602037}
   fxSource1: {fileID: 4025841386534091724}
   fxSource2: {fileID: 1872488046803262293}
